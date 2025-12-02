@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,15 +10,20 @@ import {
 import CommonButton from "../components/widgets/common_button";
 import { AiFillEdit } from "react-icons/ai";
 import { Trash2 } from "lucide-react";
+import Delete from "./common_Delete_dialog";
 
 const CommonTable = ({
   columns = [],
   rows = [],
   showEdit = false,
   showDelete = false,
-  onEdit = () => {},
-  onDelete = () => {},
+  onEdit = () => { },
+  onDelete = () => { },
 }) => {
+
+  const [isOpen, setIsOpen] = useState(false)
+  console.log("isOpen", isOpen);
+
   return (
     <div className="border rounded-xl overflow-hidden">
       <Table className="whitespace-nowrap">
@@ -70,7 +75,7 @@ const CommonTable = ({
                         <CommonButton
                           variant="outline"
                           className="size-9"
-                          onClick={() => onDelete(row)}
+                          onClick={() => setIsOpen(true)}
                         >
                           <Trash2 className="h-5 w-5" />
                         </CommonButton>
@@ -93,6 +98,11 @@ const CommonTable = ({
         </TableBody>
 
       </Table>
+      <Delete
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        handleDelete={onDelete}
+      />
     </div>
   );
 };

@@ -4,10 +4,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../../../components/ui/dialog";
-import { Button } from "../../../components/ui/button";
+} from "../components/ui/dialog";
+import { Button } from "../components/ui/button";
 import { PiSealWarningFill } from "react-icons/pi";
-import CommonDialog from "../../../components/widgets/common_dialog";
+import CommonDialog from "../components/widgets/common_dialog";
 
 const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
 
