@@ -12,7 +12,7 @@ import CommonDialog from "../components/widgets/common_dialog";
 const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
 
   return (
-    <CommonDialog isOpen={isOpen} onClose={() => setIsOpen("")}>
+    <CommonDialog isOpen={isOpen} size="sm" onClose={() => setIsOpen("")}>
       <div className="flex items-center justify-center">
         <PiSealWarningFill className="lg:text-7xl text-5xl text-destructive" />
       </div>
@@ -24,9 +24,9 @@ const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
           Are you sure you want to delete this item?
         </p>
       </DialogHeader>
-      <DialogFooter>
+      <DialogFooter className="grid grid-cols-2">
         <DialogClose asChild>
-          <Button type="button" variant="outline" >
+          <Button type="button" variant="outline" className="w-full" >
             close
           </Button>
         </DialogClose>
@@ -34,7 +34,7 @@ const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
           <Button
             onClick={handleDelete}
             type="button"
-            variant="destructive"
+            variant="destructive" className="w-full"
           >
             delete
           </Button>

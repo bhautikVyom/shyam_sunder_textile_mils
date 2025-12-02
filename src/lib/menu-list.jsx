@@ -24,9 +24,9 @@ export function getMenuList(pathname) {
               label: "User",
               active: pathname === "/master/user",
               icon: User,
-            }
+            },
           ],
-        }
+        },
       ],
     },
   ];
