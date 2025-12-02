@@ -16,7 +16,7 @@ const CommonButton = ({
     <Button
       variant={variant}
       size={size}
-      className={cn("relative", className)}
+      className={cn("relative uppercase cursor-pointer", className)}
       disabled={disabled || isLoading}
       {...props}
     >
