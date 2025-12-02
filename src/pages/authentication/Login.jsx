@@ -16,15 +16,15 @@ const Login = () => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email("messages.email")
-      .required("messages.emailRequired"),
+      .email("Email must be a valid email")
+      .required("Email is required"),
     password: Yup.string()
-      .min(8, "messages.password")
-      .matches(/[A-Z]/, "messages.passwordUppercase")
-      .matches(/[a-z]/, "messages.passwordLowercase")
-      .matches(/[0-9]/, "messages.passwordNumber")
-      .matches(/[!@#$%^&*_,]/, "messages.passwordSpecialChar")
-      .required("messages"),
+      .min(8, "Password must be at least 8 characters")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+      .matches(/[0-9]/, "Password must contain at least one number")
+      .matches(/[!@#$%^&*_,]/, "Password must contain at least one special character")
+      .required("Password is required"),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -75,7 +75,7 @@ const Login = () => {
               </div>
             </a>
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight dark:text-white text-gray-900">
-              signIn
+              Sign in
             </h2>
           </div>
 
@@ -86,7 +86,7 @@ const Login = () => {
                   label="email"
                   type="email"
                   name="email"
-                  placeholder="emailPlaceholder"
+                  placeholder="Enter your email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -102,7 +102,7 @@ const Login = () => {
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="passwordPlaceholder"
+                  placeholder="Enter your password"
                   isPassword
                   error={formik.touched.password && formik.errors.password}
                 />

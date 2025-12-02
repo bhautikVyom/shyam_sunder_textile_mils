@@ -80,7 +80,7 @@ const CommonTextField = ({
   if (label) {
     return (
       <div className="space-y-2">
-        <Label className="text-sm font-medium text-primary">{label}</Label>
+        <Label className="text-sm font-medium text-primary capitalize">{label}</Label>
         {input}
         {error && <p className="text-red-500 text-sm">{error}</p>}
       </div>
