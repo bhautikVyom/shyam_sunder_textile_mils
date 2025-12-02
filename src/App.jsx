@@ -17,9 +17,11 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  let isLoggedIn = true
+
   return (
     <>
-      {isLaptop ? <Router /> : "this website is only for leptop screen"}
+      {isLaptop ? <Router isLoggedIn={isLoggedIn}/> : "this website is only for leptop screen"}
     </>
   )
 }

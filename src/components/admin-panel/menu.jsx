@@ -83,13 +83,13 @@ export function Menu({ isOpen }) {
                                 </span>
                                 <p
                                   className={cn(
-                                    "max-w-[230px] truncate",
+                                    "max-w-[230px] truncate capitalize",
                                     isOpen === false
                                       ? "-translate-x-96 opacity-0"
                                       : "translate-x-0 opacity-100"
                                   )}
                                 >
-                                  {`sidebar.${label}`}
+                                  {label}
                                 </p>
                               </Link>
                             </Button>
@@ -129,7 +129,7 @@ export function Menu({ isOpen }) {
                 <LogOut size={18} />
               </span>
 
-             Logout
+              Logout
             </div>
           </CommonButton>
         </div>

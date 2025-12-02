@@ -1,7 +1,6 @@
 import React from "react";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
-// import { SidebarToggle } from "./sidebar-toggle";
 import { Menu } from "./menu";
 import { useSidebarToggle } from "../../hooks/use-sidebar-toggle";
 import { useStore } from "zustand";
