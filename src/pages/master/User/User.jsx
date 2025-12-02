@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from "../../components/ui/card";
+import { Card } from "../../../components/ui/card";
 import {
   Table,
   TableBody,
@@ -7,18 +7,18 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/ui/table";
+} from "../../../components/ui/table";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../components/ui/select";
+} from "../../../components/ui/select";
 import { AiFillEdit } from "react-icons/ai";
-import CommonPagination from "../../components/widgets/common_pagination";
-import { CommonTextField } from "../../components/widgets/common_textField";
-import CommonButton from "../../components/widgets/common_button";
+import CommonPagination from "../../../components/widgets/common_pagination";
+import { CommonTextField } from "../../../components/widgets/common_textField";
+import CommonButton from "../../../components/widgets/common_button";
 import Delete from "./Delete";
 import { Trash2 } from "lucide-react";
 
@@ -68,97 +68,7 @@ const staticUsers = [
     isActive: false,
     img: "https://i.pravatar.cc/150?img=5",
     isDeleted: false,
-  },
-  {
-    _id: "1",
-    name: "John Doe",
-    email: "john@example.com",
-    rank: "Gold",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=1",
-    isDeleted: false,
-  },
-  {
-    _id: "2",
-    name: "Jane Smith",
-    email: "jane@example.com",
-    rank: "Silver",
-    isActive: false,
-    img: "https://i.pravatar.cc/150?img=2",
-    isDeleted: false,
-  },
-  {
-    _id: "3",
-    name: "Mike Johnson",
-    email: "mike@example.com",
-    rank: "Bronze",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=3",
-    isDeleted: false,
-  },
-  {
-    _id: "4",
-    name: "Sarah Wilson",
-    email: "sarah@example.com",
-    rank: "Platinum",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=4",
-    isDeleted: false,
-  },
-  {
-    _id: "5",
-    name: "David Brown",
-    email: "david@example.com",
-    rank: "Gold",
-    isActive: false,
-    img: "https://i.pravatar.cc/150?img=5",
-    isDeleted: false,
-  },
-  {
-    _id: "1",
-    name: "John Doe",
-    email: "john@example.com",
-    rank: "Gold",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=1",
-    isDeleted: false,
-  },
-  {
-    _id: "2",
-    name: "Jane Smith",
-    email: "jane@example.com",
-    rank: "Silver",
-    isActive: false,
-    img: "https://i.pravatar.cc/150?img=2",
-    isDeleted: false,
-  },
-  {
-    _id: "3",
-    name: "Mike Johnson",
-    email: "mike@example.com",
-    rank: "Bronze",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=3",
-    isDeleted: false,
-  },
-  {
-    _id: "4",
-    name: "Sarah Wilson",
-    email: "sarah@example.com",
-    rank: "Platinum",
-    isActive: true,
-    img: "https://i.pravatar.cc/150?img=4",
-    isDeleted: false,
-  },
-  {
-    _id: "5",
-    name: "David Brown",
-    email: "david@example.com",
-    rank: "Gold",
-    isActive: false,
-    img: "https://i.pravatar.cc/150?img=5",
-    isDeleted: false,
-  },
+  }
 ];
 
 const User = () => {
@@ -171,22 +81,12 @@ const User = () => {
     "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
 
   const handleStatusChange = (index, userStatus, user) => {
-    // In a real app, this would update the state
     console.log("Status changed:", { index, userStatus, user });
   };
 
-  // Filter users based on search
-  const filteredUsers = staticUsers.filter(
-    (user) =>
-      user.name.toLowerCase().includes(search.toLowerCase()) ||
-      user.email.toLowerCase().includes(search.toLowerCase())
-  );
 
-  const totalUsers = filteredUsers.length;
+  const totalUsers = staticUsers.length;
   const totalPages = Math.ceil(totalUsers / size);
-
-  // Get paginated users
-  const userData = filteredUsers.slice((page - 1) * size, page * size);
 
   const handleDataSize = (value) => {
     setSize(value);
@@ -195,14 +95,14 @@ const User = () => {
 
   return (
     <Card className="p-10 grid gap-6">
-      <h3 className="text-xl tab:text-2xl font-bold">{t("users.userList")}</h3>
+      <h3 className="text-xl tab:text-2xl font-bold">User List</h3>
 
       <div className="flex items-center justify-between gap-4 max-lg:flex-col">
         <div className="lg:max-w-72 w-full grid gap-1">
           <CommonTextField
             type="text"
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={t("searchPlaceholder")}
+            placeholder="Search..."
             className="w-full"
           />
         </div>
@@ -211,20 +111,20 @@ const User = () => {
       <Table className="whitespace-nowrap">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-14">{t("users.no")}</TableHead>
-            <TableHead className="w-14">{t("users.image")}</TableHead>
-            <TableHead>{t("users.name")}</TableHead>
-            <TableHead>{t("users.email")}</TableHead>
-            <TableHead>{t("users.badge")}</TableHead>
+            <TableHead className="w-14">sr. no</TableHead>
+            <TableHead className="w-14">Image</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Badge</TableHead>
             <TableHead className="w-36 text-center">
-              {t("users.status")}
+              Status
             </TableHead>
             <TableHead className="w-20 text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {userData.length > 0 ? (
-            userData.map((item, index) => (
+          {staticUsers.length > 0 ? (
+            staticUsers.map((item, index) => (
               <TableRow key={item._id || index}>
                 <TableCell className="ps-4">
                   #{(page - 1) * size + index + 1}
@@ -252,16 +152,16 @@ const User = () => {
                   >
                     <SelectTrigger
                       className={`w-36 font-medium ${item.isActive
-                          ? "border-green text-green"
-                          : "border-error text-error"
+                        ? "border-green text-green"
+                        : "border-error text-error"
                         }`}
                     >
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="block">{t("users.block")}</SelectItem>
+                      <SelectItem value="block">block</SelectItem>
                       <SelectItem value="un-block">
-                        {t("users.unBlock")}
+                        unblock
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -297,7 +197,7 @@ const User = () => {
                 colSpan={8}
                 className="text-center text-black/50 font-medium text-xl"
               >
-                {t("users.noUsersFound")}
+                Data Not Found
               </TableCell>
             </TableRow>
           )}

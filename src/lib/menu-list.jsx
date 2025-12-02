@@ -11,6 +11,20 @@ export function getMenuList(pathname) {
           active: pathname === "/",
           icon: MdOutlineSpaceDashboard,
           submenus: [],
+        },
+        {
+          href: "/master",
+          label: "master",
+          active: pathname === "/master",
+          icon: MdOutlineSpaceDashboard,
+          submenus: [
+            {
+              href: "/master/user",
+              label: "master",
+              active: pathname === "/master/user",
+              icon: MdOutlineSpaceDashboard,
+            }
+          ],
         }
       ],
     },

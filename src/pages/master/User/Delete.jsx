@@ -1,17 +1,13 @@
 import React from "react";
 import {
-  Dialog,
   DialogClose,
-  DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "../../components/ui/dialog";
-import { Button } from "../../components/ui/button";
-import { Trash2 } from "lucide-react";
+} from "../../../components/ui/dialog";
+import { Button } from "../../../components/ui/button";
 import { PiSealWarningFill } from "react-icons/pi";
-import CommonDialog from "../../components/widgets/common_dialog";
+import CommonDialog from "../../../components/widgets/common_dialog";
 
 const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
 
@@ -22,16 +18,16 @@ const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
       </div>
       <DialogHeader className="py-5">
         <DialogTitle className="text-2xl text-center">
-          {t("deleteDialog.areYouSure")}
+          Are you sure?
         </DialogTitle>
         <p className="text-center text-sm text-muted-foreground mt-4">
-          {t("deleteDialog.areYouSureDelete")}
+          Are you sure you want to delete this item?
         </p>
       </DialogHeader>
       <DialogFooter>
         <DialogClose asChild>
-          <Button type="button" variant="outline" className="w-full">
-            {t("close")}
+          <Button type="button" variant="outline" >
+            close
           </Button>
         </DialogClose>
         <DialogClose asChild>
@@ -39,9 +35,8 @@ const Delete = ({ isOpen, setIsOpen, isDelete, handleDelete }) => {
             onClick={handleDelete}
             type="button"
             variant="destructive"
-            className="w-full"
           >
-            {t("delete")}
+            delete
           </Button>
         </DialogClose>
       </DialogFooter>

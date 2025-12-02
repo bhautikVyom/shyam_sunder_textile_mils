@@ -2,6 +2,7 @@ import { Navigate, useRoutes } from "react-router";
 import AdminPanelLayout from "../components/admin-panel/admin-panel-layout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/authentication/Login";
+import User from "../pages/master/User/User";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -25,6 +26,11 @@ const routes = (isLoggedIn) => [
       {
         element: <Dashboard />,
         path: "/",
+        index: true,
+      },
+      {
+        element: <User />,
+        path: "/master/user",
         index: true,
       }
     ],
