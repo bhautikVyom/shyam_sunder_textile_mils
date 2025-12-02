@@ -3,6 +3,7 @@ import AdminPanelLayout from "../components/admin-panel/admin-panel-layout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/authentication/Login";
 import User from "../pages/master/User/User";
+import AddEditUser from "../pages/master/User/AddEditUser";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -31,6 +32,11 @@ const routes = (isLoggedIn) => [
       {
         element: <User />,
         path: "/master/user",
+        index: true,
+      },
+      {
+        element: <AddEditUser />,
+        path: "/master/user/add",
         index: true,
       }
     ],
