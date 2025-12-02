@@ -67,8 +67,16 @@ const User = () => {
         ) : (
           <span className="text-red-600 font-semibold">Inactive</span>
         ),
-    },
+    }
   ];
+
+  const handleEdit = () => {
+    alert("edit Dialog")
+  }
+
+  const handleDelete = () => {
+    alert("Delete")
+  }
 
   return (
     <div className="grid gap-6">
@@ -84,7 +92,14 @@ const User = () => {
         </div>
       </div>
 
-      <CommonTable columns={columns} rows={staticUsers || []} />
+      <CommonTable
+        columns={columns}
+        rows={staticUsers || []}
+        showEdit={true}
+        showDelete={true}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
 
     </div>
   );

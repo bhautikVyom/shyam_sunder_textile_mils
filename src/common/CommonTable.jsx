@@ -7,8 +7,18 @@ import {
   TableHeader,
   TableRow
 } from "../components/ui/table";
+import CommonButton from "../components/widgets/common_button";
+import { AiFillEdit } from "react-icons/ai";
+import { Trash2 } from "lucide-react";
 
-const CommonTable = ({ columns = [], rows = [] }) => {
+const CommonTable = ({
+  columns = [],
+  rows = [],
+  showEdit = false,
+  showDelete = false,
+  onEdit = () => {},
+  onDelete = () => {},
+}) => {
   return (
     <div className="border rounded-xl overflow-hidden">
       <Table className="whitespace-nowrap">
@@ -24,6 +34,10 @@ const CommonTable = ({ columns = [], rows = [] }) => {
                 {col.headerName}
               </TableHead>
             ))}
+
+            {(showEdit || showDelete) && (
+              <TableHead className="text-center w-28">Actions</TableHead>
+            )}
           </TableRow>
         </TableHeader>
 
@@ -38,12 +52,38 @@ const CommonTable = ({ columns = [], rows = [] }) => {
                       : row[col.field] ?? "-"}
                   </TableCell>
                 ))}
+
+                {(showEdit || showDelete) && (
+                  <TableCell>
+                    <div className="flex items-center gap-2 justify-center">
+                      {showEdit && (
+                        <CommonButton
+                          variant="outline"
+                          className="size-9"
+                          onClick={() => onEdit(row)}
+                        >
+                          <AiFillEdit className="size-5" />
+                        </CommonButton>
+                      )}
+
+                      {showDelete && (
+                        <CommonButton
+                          variant="outline"
+                          className="size-9"
+                          onClick={() => onDelete(row)}
+                        >
+                          <Trash2 className="h-5 w-5" />
+                        </CommonButton>
+                      )}
+                    </div>
+                  </TableCell>
+                )}
               </TableRow>
             ))
           ) : (
             <TableRow className="h-32">
               <TableCell
-                colSpan={columns.length}
+                colSpan={columns.length + 1}
                 className="text-center text-gray-500 font-medium"
               >
                 No data found
@@ -51,6 +91,7 @@ const CommonTable = ({ columns = [], rows = [] }) => {
             </TableRow>
           )}
         </TableBody>
+
       </Table>
     </div>
   );
