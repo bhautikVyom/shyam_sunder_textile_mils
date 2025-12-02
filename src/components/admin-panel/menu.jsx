@@ -71,13 +71,18 @@ export function Menu({ isOpen }) {
                         <Tooltip delayDuration={100}>
                           <TooltipTrigger asChild>
                             <Button
-                              variant={active ? "secondary" : "ghost"}
-                              className="w-full justify-start h-10 mb-1"
+                              variant={active ? "secondary" : "ghost"} 
+                              className={cn(
+                                    "w-full mb-1",
+                                    isOpen === false
+                                      ? "h-10 justify-center"
+                                      : "h-10 justify-start"
+                                  )}
                               asChild
                             >
                               <Link to={href}>
                                 <span
-                                  className={cn(isOpen === false ? "" : "mr-2")}
+                                  className={cn(isOpen === false ? "mx-auto" : "mr-2")}
                                 >
                                   <Icon size={18} />
                                 </span>
@@ -85,7 +90,7 @@ export function Menu({ isOpen }) {
                                   className={cn(
                                     "max-w-[230px] truncate capitalize",
                                     isOpen === false
-                                      ? "-translate-x-96 opacity-0"
+                                      ? "-translate-x-96 opacity-0 hidden"
                                       : "translate-x-0 opacity-100"
                                   )}
                                 >
@@ -121,15 +126,12 @@ export function Menu({ isOpen }) {
           <CommonButton
             onClick={() => handleLogout()}
             variant="outline"
-            className="w-full"
+            className="w-full p-0"
             isLoading={isLoggingOut}
           >
-            <div className="w-full flex items-center justify-center ">
-              <span className={cn(isOpen === false ? "" : "mr-4")}>
-                <LogOut size={18} />
-              </span>
-
-              Logout
+            <div className="w-full flex items-center justify-center gap-2">
+              <LogOut size={18} />
+              {isOpen === true && <span className="">Logout</span>}
             </div>
           </CommonButton>
         </div>

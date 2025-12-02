@@ -5,6 +5,8 @@ import { Menu } from "./menu";
 import { useSidebarToggle } from "../../hooks/use-sidebar-toggle";
 import { useStore } from "zustand";
 import { AppImages } from "../../common/ImagePath";
+import { SidebarToggle } from "./sidebar-toggle";
+import { Link } from "react-router-dom";
 
 export function Sidebar() {
   const sidebar = useStore(useSidebarToggle, (state) => state);
@@ -18,28 +20,28 @@ export function Sidebar() {
         sidebar?.isOpen === false ? "w-[90px]" : "w-72"
       )}
     >
-      {/* <SidebarToggle isOpen={sidebar?.isOpen} setIsOpen={sidebar?.setIsOpen} /> */}
+      <SidebarToggle isOpen={sidebar?.isOpen} setIsOpen={sidebar?.setIsOpen} />
       <div className="relative h-full flex flex-col py-4 overflow-y-auto shadow-md dark:shadow-zinc-800">
         <Button
           className={cn(
             "transition-transform ease-in-out duration-300 mb-1",
-            sidebar?.isOpen === false ? "translate-x-1" : "translate-x-0"
+            sidebar?.isOpen === false ? "translate-x-0 w-12" : "translate-x-0"
           )}
           variant="link"
           asChild
         >
-          <a href="/" className="flex items-center gap-2">
+          <Link to="/" className={`flex items-center gap-2 p-0`}>
             <div className="w-48">
-              <img
+              {/* <img
                 src={AppImages.logoIconDark}
                 alt="logo"
                 className={cn(
                   sidebar?.isOpen === false
                     ? "-translate-x-96 opacity-0 hidden w-full"
                     : "translate-x-0 opacity-100",
-                  "block dark:hidden"
+                  "block dark:hidden object-contain bg-contain h-9 w-full"
                 )}
-              />
+              /> */}DD
               <img
                 src={AppImages.logoIcon}
                 alt="logoDark"
@@ -47,11 +49,11 @@ export function Sidebar() {
                   sidebar?.isOpen === false
                     ? "-translate-x-96 opacity-0 hidden w-full"
                     : "translate-x-0 opacity-100",
-                  "hidden dark:block"
+                  "hidden dark:block object-contain bg-contain h-9 w-full"
                 )}
               />
             </div>
-          </a>
+          </Link>
         </Button>
         <Menu isOpen={sidebar?.isOpen} />
       </div>

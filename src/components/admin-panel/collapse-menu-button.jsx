@@ -41,7 +41,7 @@ export function CollapseMenuButton({
     <Collapsible
       open={isCollapsed}
       onOpenChange={setIsCollapsed}
-      className="w-full"
+      className="w-full "
     >
       <CollapsibleTrigger
         className="[&[data-state=open]>div>div>svg]:rotate-180 mb-1"
@@ -49,7 +49,10 @@ export function CollapseMenuButton({
       >
         <Button
           variant={active ? "secondary" : "ghost"}
-          className="w-full justify-start h-10"
+          className={cn(
+            "w-full mb-1 DD",
+            isOpen === false ? "h-10 p-0! justify-center" : "h-10 justify-start"
+          )}
         >
           <div className="w-full items-center flex justify-between">
             <div className="flex items-center">
@@ -61,7 +64,7 @@ export function CollapseMenuButton({
                   "max-w-[150px] truncate capitalize",
                   isOpen
                     ? "translate-x-0 opacity-100"
-                    : "-translate-x-96 opacity-0"
+                    : "-translate-x-96 opacity-0 hidden"
                 )}
               >
                 {label}
@@ -84,11 +87,16 @@ export function CollapseMenuButton({
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-        {submenus.map(({ href, label, active, icon:Icon }, index) => (
+        {submenus.map(({ href, label, active, icon: Icon }, index) => (
           <Button
             key={index}
             variant={active ? "secondary" : "ghost"}
-            className="w-full justify-start h-10 mb-1"
+            className={cn(
+              "w-full mb-1 De",
+              isOpen === false
+                ? "h-10 p-0! justify-center"
+                : "h-10 justify-start"
+            )}
             asChild
           >
             <Link to={href}>
@@ -118,17 +126,29 @@ export function CollapseMenuButton({
             <DropdownMenuTrigger asChild>
               <Button
                 variant={active ? "secondary" : "ghost"}
-                className="w-full justify-start h-10 mb-1"
+                className={cn(
+                  "w-full mb-1",
+                  isOpen === false
+                    ? "h-10 justify-center!"
+                    : "h-10 justify-start"
+                )}
               >
                 <div className="w-full items-center flex justify-between">
-                  <div className="flex items-center">
+                  <div
+                    className={cn(
+                      "w-full mb-1 flex items-center",
+                      isOpen === false
+                        ? "h-10 p-0! justify-center!"
+                        : "h-10 justify-start"
+                    )}
+                  >
                     <span className={cn(isOpen === false ? "" : "mr-4")}>
                       <Icon size={18} />
                     </span>
                     <p
                       className={cn(
                         "max-w-[200px] truncate",
-                        isOpen === false ? "opacity-0" : "opacity-100"
+                        isOpen === false ? "opacity-0 hidden" : "opacity-100"
                       )}
                     >
                       {label}

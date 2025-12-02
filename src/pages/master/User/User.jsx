@@ -67,9 +67,9 @@ const User = () => {
       flex: 1,
       renderCell: ({ row }) =>
         row.isActive ? (
-          <span className="text-green-600 font-semibold">Active</span>
+          <span className="text-green font-semibold">Active</span>
         ) : (
-          <span className="text-red-600 font-semibold">Inactive</span>
+          <span className="text-destructive font-semibold">Inactive</span>
         ),
     }
   ];
