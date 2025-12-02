@@ -9,12 +9,12 @@ import { AppImages } from "../../common/ImagePath";
 const Login = () => {
   const navigate = useNavigate();
 
-  const initialValues = { email: "", password: "" };
+  const initialValues = { mobile: "", password: "" };
 
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Email must be a valid email")
-      .required("Email is required"),
+    mobile: Yup.string()
+      .matches(/^[0-9]{10}$/, "Mobile number must be 10 digits")
+      .required("Mobile number is required"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters")
       .matches(/[A-Z]/, "At least one uppercase letter")
@@ -65,14 +65,20 @@ const Login = () => {
 
         <form className="mt-10 space-y-6" onSubmit={formik.handleSubmit}>
           <CommonTextField
-            label="Email Address"
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
+            label="Mobile Number"
+            type="number"
+            name="mobile"
+            placeholder="Enter your mobile number"
+            value={formik.values.mobile}
+            maxLength={10}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, "");
+              if (value.length <= 10) {
+                formik.setFieldValue("mobile", value);
+              }
+            }}
             onBlur={formik.handleBlur}
-            error={formik.touched.email && formik.errors.email}
+            error={formik.touched.mobile && formik.errors.mobile}
           />
 
           <CommonTextField
