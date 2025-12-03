@@ -3,6 +3,7 @@ import AdminPanelLayout from "../components/admin-panel/admin-panel-layout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/authentication/Login";
 import User from "../pages/master/User/User";
+import Design from "../pages/master/Design/Design";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -28,11 +29,19 @@ const routes = (isLoggedIn) => [
         path: "/",
         index: true,
       },
+
+      // Master Routes
       {
         element: <User />,
         path: "/master/user",
         index: true,
+      },
+      {
+        element: <Design />,
+        path: "/master/design",
+        index: true,
       }
+      //______________________________
     ],
   },
 ];

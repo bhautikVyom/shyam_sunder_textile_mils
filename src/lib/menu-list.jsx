@@ -25,6 +25,12 @@ export function getMenuList(pathname) {
               active: pathname === "/master/user",
               icon: User,
             },
+            {
+              href: "/master/design",
+              label: "design",
+              active: pathname === "/master/design",
+              icon: User,
+            },
           ],
         },
       ],
