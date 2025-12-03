@@ -151,12 +151,40 @@
 
 /* Input CSS */
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000 !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
+
+/* For input fields - padding animation works */
 input[data-slot="input"]:focus::placeholder {
   padding-left: 0.25rem;
 }
 
 input[data-slot="input"]::placeholder {
   transition: padding-left 200ms;
+}
+
+/* For textarea - use transform instead of padding */
+textarea[data-slot="textarea"]:focus::placeholder {
+  transform: translateX(0.25rem);
+}
+
+textarea[data-slot="textarea"]::placeholder {
+  transition: transform 200ms;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -170,7 +198,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+/* _________________________________________________________ */
 
+/* Heading Tags */
 .h1-bold {
   @apply text-[56px] font-semibold -tracking-[3%];
 }
@@ -270,50 +300,10 @@ input[type="number"] {
 .span-regular {
   @apply text-xs font-normal lg:text-sm;
 }
+/* ___________________________________________________ */
 
 .login-bg::after {
   content: "";
   @apply fixed inset-0 bg-no-repeat bg-center bg-cover -z-10;
   background-image: url('/src/assets/login-bg.png');
 }
-
-
-/* Reset autofill background */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000 !important;
-  /* light mode text */
-  box-shadow: 0 0 0px 1000px transparent inset !important;
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-  transition: background-color 9999s ease-in-out 0s !important;
-}
-
-.dark input:-webkit-autofill,
-.dark input:-webkit-autofill:hover,
-.dark input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff !important;
-  box-shadow: 0 0 0px 1000px transparent inset !important;
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-  transition: background-color 9999s ease-in-out 0s !important;
-}
-
-
-
-/* input,
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 50px rgba(255, 255, 255, 0) inset !important;
-  background-color: transparent !important;
-  background-clip: text;
-} */
-
-/* Dark mode autofill styles */
-/* .dark input:-webkit-autofill,
-.dark input:-webkit-autofill:hover,
-.dark input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000 !important;
-  transition: background-color 5000s ease-in-out 0s;
-  color: #000 !important;
-} */
