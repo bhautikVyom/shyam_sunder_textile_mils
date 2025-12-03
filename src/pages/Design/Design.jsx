@@ -1,8 +1,9 @@
 import React from 'react'
-import { CommonTextField } from '../../../components/widgets/common_textField'
-import { Card } from '../../../components/ui/card'
-import CommonButton from '../../../components/widgets/common_button'
+import { CommonTextField } from '../../components/widgets/common_textField'
+import { Card } from '../../components/ui/card'
+import CommonButton from '../../components/widgets/common_button'
 import { CircleFadingPlus } from 'lucide-react'
+import DesignCard from './DesignCard'
 
 const Design = () => {
      const handleEdit = () => {
@@ -36,7 +37,10 @@ const Design = () => {
           </div>
         </CommonButton>
       </div>
-        Design Page
+       
+       <div className='grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-2 lg:gap-4'>
+        <DesignCard />
+       </div>
     </Card>
     </div>
   )
