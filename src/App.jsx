@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      {isLaptop ? <Router isLoggedIn={isLoggedIn}/> : "this website is only for leptop screen"}
+      {isLaptop ? <Router isLoggedIn={isLoggedIn} /> : <div className='flex justify-center items-center h-screen '>This website is accessible only on laptop and desktop devices.</div>}
     </>
   )
 }
