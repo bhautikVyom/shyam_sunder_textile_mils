@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import {
   Factory,
   Boxes,
   Users,
   IndianRupee
 } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import {
   LineChart,
   Line,
@@ -100,11 +100,10 @@ const Dashboard = () => {
 
   return (
     <div className="grid gap-6">
-      <h2 className="text-2xl font-bold">Shyam Sunder Textile Mills</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {tabCard?.map((list, index) => (
-          <Card key={index}>
+          <Card key={index} className="py-2">
             <CardHeader className="flex flex-row justify-between items-center pb-2">
               <CardTitle>{list?.name}</CardTitle>
               <span className="h-5 w-5 text-primary">
@@ -119,23 +118,23 @@ const Dashboard = () => {
         ))}
       </div>
 
-     <div className="flex justify-between gap-4">
-       <Tabs defaultValue="design" onValueChange={setActiveTab}>
-        <TabsList className="mb-4">
-          <TabsTrigger value="design">Design</TabsTrigger>
-          <TabsTrigger value="category">Category</TabsTrigger>
-          <TabsTrigger value="grn">GRN</TabsTrigger>
-        </TabsList>
-      </Tabs>
+      <div className="flex justify-between gap-4">
+        <Tabs defaultValue="design" onValueChange={setActiveTab}>
+          <TabsList className="mb-4">
+            <TabsTrigger value="design">Design</TabsTrigger>
+            <TabsTrigger value="category">Category</TabsTrigger>
+            <TabsTrigger value="grn">GRN</TabsTrigger>
+          </TabsList>
+        </Tabs>
 
-      <Tabs defaultValue="monthly" onValueChange={setTimeRange}>
-        <TabsList>
-          <TabsTrigger value="weekly">Weekly</TabsTrigger>
-          <TabsTrigger value="monthly">Monthly</TabsTrigger>
-          <TabsTrigger value="yearly">Yearly</TabsTrigger>
-        </TabsList>
-      </Tabs>
-     </div>
+        <Tabs defaultValue="monthly" onValueChange={setTimeRange}>
+          <TabsList>
+            <TabsTrigger value="weekly">Weekly</TabsTrigger>
+            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            <TabsTrigger value="yearly">Yearly</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
 
       <Card className="p-6">
         <CardHeader>
