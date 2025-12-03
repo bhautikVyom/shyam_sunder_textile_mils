@@ -4,15 +4,10 @@ import { Card } from '../../components/ui/card'
 import CommonButton from '../../components/widgets/common_button'
 import { CircleFadingPlus } from 'lucide-react'
 import DesignCard from './DesignCard'
+import { useNavigate } from 'react-router-dom'
 
 const Design = () => {
-     const handleEdit = () => {
-    alert("edit Dialog")
-  }
-
-  const handleDelete = () => {
-    alert("Delete")
-  }
+  const navigate = useNavigate()
   return (
     <div className="grid gap-6">
       <h3 className="text-xl tab:text-2xl font-bold">Design List</h3>
@@ -29,7 +24,7 @@ const Design = () => {
         </div>
         <CommonButton
           type="submit"
-        //   onClick={() => navigate('/master/user/add')}
+          onClick={() => navigate('/design/add-design')}
         >
           <div className="flex items-center gap-2">
             <CircleFadingPlus />

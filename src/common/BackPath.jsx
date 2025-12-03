@@ -10,7 +10,7 @@ const BackPath = () => {
     navigate(-1);
   };
   return (
-    <CommonButton variant="outline" onClick={handleBack}>
+    <CommonButton variant="outline" className="w-fit" onClick={handleBack}>
       <span className="flex items-center gap-2 w-fit">
         <ArrowLeft className="size-5" /> back
       </span>

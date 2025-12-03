@@ -5,6 +5,7 @@ import Login from "../pages/authentication/Login";
 import User from "../pages/master/User/User";
 import Design from "../pages/Design/Design";
 import AddEditUser from "../pages/master/User/AddEditUser";
+import AddDesign from "../pages/Design/AddDesign";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -32,8 +33,13 @@ const routes = (isLoggedIn) => [
       },
 
       {
-         element: <Design />,
+        element: <Design />,
         path: "/design",
+        index: true,
+      },
+      {
+        element: <AddDesign />,
+        path: "/design/add-design",
         index: true,
       },
       // Master Routes
