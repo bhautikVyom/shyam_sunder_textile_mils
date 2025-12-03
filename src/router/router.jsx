@@ -31,6 +31,11 @@ const routes = (isLoggedIn) => [
         index: true,
       },
 
+      {
+         element: <Design />,
+        path: "/design",
+        index: true,
+      },
       // Master Routes
       {
         element: <User />,
@@ -42,11 +47,6 @@ const routes = (isLoggedIn) => [
         path: "/master/user/add",
         index: true,
       },
-      {
-         element: <Design />,
-        path: "/master/design",
-        index: true,
-      }
       //______________________________
     ],
   },

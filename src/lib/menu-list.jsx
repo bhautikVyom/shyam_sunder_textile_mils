@@ -1,4 +1,4 @@
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdDraw, MdOutlineSpaceDashboard } from "react-icons/md";
 import { Box, User } from "lucide-react";
 
 export function getMenuList(pathname) {
@@ -14,6 +14,13 @@ export function getMenuList(pathname) {
           submenus: [],
         },
         {
+          href: "/design",
+          label: "design",
+          active: pathname === "/design",
+          icon: MdDraw,
+          submenus: [],
+        },
+        {
           href: "/master",
           label: "master",
           active: pathname.includes("/master"),
@@ -23,12 +30,6 @@ export function getMenuList(pathname) {
               href: "/master/user",
               label: "User",
               active: pathname === "/master/user",
-              icon: User,
-            },
-            {
-              href: "/master/design",
-              label: "design",
-              active: pathname === "/master/design",
               icon: User,
             },
           ],

@@ -2,6 +2,7 @@ import React from 'react'
 import { CommonTextField } from '../../../components/widgets/common_textField'
 import { Card } from '../../../components/ui/card'
 import CommonButton from '../../../components/widgets/common_button'
+import { CircleFadingPlus } from 'lucide-react'
 
 const Design = () => {
      const handleEdit = () => {
@@ -13,7 +14,7 @@ const Design = () => {
   }
   return (
     <div className="grid gap-6">
-      <h3 className="text-xl tab:text-2xl font-bold">User List</h3>
+      <h3 className="text-xl tab:text-2xl font-bold">Design List</h3>
 
 
     <Card className='p-1.5 lg:p-4'>
@@ -25,7 +26,15 @@ const Design = () => {
             className="w-full"
           />
         </div>
-        <CommonButton></CommonButton>
+        <CommonButton
+          type="submit"
+        //   onClick={() => navigate('/master/user/add')}
+        >
+          <div className="flex items-center gap-2">
+            <CircleFadingPlus />
+            add
+          </div>
+        </CommonButton>
       </div>
         Design Page
     </Card>
