@@ -14,6 +14,7 @@ export default function AddEditUser() {
     mobile: "",
     password: "",
     role: "",
+    confirm_password: ""
   };
 
   const validationSchema = Yup.object({
@@ -30,7 +31,7 @@ export default function AddEditUser() {
       .matches(/[!@#$%^&*_,]/, "At least one special character")
       .required("Password is required"),
     confirm_password: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Confirm Password is required"),
   });
 
