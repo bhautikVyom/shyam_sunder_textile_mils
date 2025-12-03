@@ -14,6 +14,7 @@ import * as Yup from "yup";
 import { CommonTextarea } from "../../components/widgets/common_textarea";
 
 const AddDesign = () => {
+
   const [previewImages, setPreviewImages] = useState([]);
 
   const validationSchema = Yup.object({
@@ -23,7 +24,7 @@ const AddDesign = () => {
         Yup.object({
           image: Yup.mixed().required("Image is required"),
           title: Yup.string().required("Matching title is required"),
-          description: Yup.string().required("description is required")
+          description: Yup.string().required("Description is required"),
         })
       )
       .min(1, "At least one design required"),
@@ -36,11 +37,10 @@ const AddDesign = () => {
         {
           image: null,
           title: "",
-          description: ""
+          description: "",
         },
       ],
     },
-
     validationSchema,
     onSubmit: (values) => {
       console.log("Final Submit:", values);
@@ -48,6 +48,7 @@ const AddDesign = () => {
     },
   });
 
+  // Image Upload
   const handleImageChange = (e, index) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -61,12 +62,24 @@ const AddDesign = () => {
     formik.setFieldValue(`designs[${index}].image`, file);
   };
 
+  // Remove Uploaded Image
   const removeImage = (index) => {
     const updatedPreview = [...previewImages];
     updatedPreview[index] = null;
     setPreviewImages(updatedPreview);
 
     formik.setFieldValue(`designs[${index}].image`, null);
+  };
+
+  // Delete Full Design Item
+  const deleteDesign = (index) => {
+    const updatedPreview = [...previewImages];
+    updatedPreview.splice(index, 1);
+    setPreviewImages(updatedPreview);
+
+    const updatedDesigns = [...formik.values.designs];
+    updatedDesigns.splice(index, 1);
+    formik.setFieldValue("designs", updatedDesigns);
   };
 
   return (
@@ -76,20 +89,23 @@ const AddDesign = () => {
 
       <Card className="p-3">
         <form className="grid gap-5" onSubmit={formik.handleSubmit}>
-
           <div className="flex items-center justify-between gap-4">
             <div className="max-w-96">
               <CommonTextField
                 label="Design No."
                 placeholder="Enter Design No."
+                name="design_no"
+                value={formik.values.design_no}
+                onChange={formik.handleChange}
               />
             </div>
+
             <CommonButton
               type="button"
               onClick={() =>
                 formik.setFieldValue("designs", [
                   ...formik.values.designs,
-                  { image: null, title: "" },
+                  { image: null, title: "", description: "" },
                 ])
               }
             >
@@ -103,28 +119,24 @@ const AddDesign = () => {
 
           <div className="grid grid-cols-2 gap-6">
             {formik.values.designs?.map((item, index) => (
-              <div key={item} className="p-4 rounded-2xl shadow-card grid gap-6">
+              <div key={index} className="p-4 rounded-2xl shadow-card grid gap-6">
                 <div>
                   <Label htmlFor={`design_image_${index}`} className="cursor-pointer block">
-
                     {!previewImages[index] && (
                       <div className="border border-dashed border-primary/50 rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3">
                         <IoIosCloudUpload className="size-14 opacity-50" />
                         <div className="grid gap-1 text-center">
                           <h5 className="h5-bold leading-none">Drop your image here.</h5>
-                          <p className="p-regular text-primary/70 leading-none">
-                            Supports JPG & PNG
-                          </p>
+                          <p className="p-regular text-primary/70 leading-none">Supports JPG & PNG</p>
                         </div>
                       </div>
                     )}
-
                   </Label>
 
                   {previewImages[index] && (
                     <div className="size-48 shadow-card rounded-2xl overflow-hidden relative mx-auto">
                       <img
-                        src={item?.image[index]}
+                        src={previewImages[index]}
                         alt="Design Preview"
                         className="w-full h-full object-cover"
                       />
@@ -149,23 +161,37 @@ const AddDesign = () => {
                 </div>
 
                 <CommonTextField
-                  label="matching Title"
-                  placeholder={`Enter Image Ma Title`}
+                  label="Matching Title"
+                  placeholder="Enter Title"
+                  name={`designs[${index}].title`}
+                  value={formik.values.designs[index]?.title}
+                  onChange={formik.handleChange}
                 />
 
                 <CommonTextarea
-                  label="matching Title"
-                  placeholder={`Enter Image Ma Title`}
+                  label="Description"
+                  placeholder="Enter Description"
+                  name={`designs[${index}].description`}
+                  value={formik.values.designs[index]?.description}
+                  onChange={formik.handleChange}
                 />
+
+                <div className="flex items-center justify-end">
+                  <CommonButton
+                    className="sm:max-w-36 w-full"
+                    type="button"
+                    variant="destructive"
+                    onClick={() => deleteDesign(index)}
+                  >
+                    delete
+                  </CommonButton>
+                </div>
               </div>
             ))}
           </div>
 
           <div className="flex items-center justify-end">
-            <CommonButton
-              className="sm:max-w-36 w-full"
-              type="submit"
-            >
+            <CommonButton className="sm:max-w-36 w-full" type="submit">
               submit
             </CommonButton>
           </div>
