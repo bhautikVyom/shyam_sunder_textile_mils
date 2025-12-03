@@ -23,7 +23,7 @@ export default function AdminPanelLayout({ children }) {
           sidebar?.isOpen === false ? "lg:ml-[90px]" : "lg:ml-72"
         )}
       >
-        <Navbar />
+        <Navbar title="Shyam Sunder Textile Mills"/>
         <div className="pt-8 pb-8 px-4 sm:px-8">
           <Outlet />
         </div>
