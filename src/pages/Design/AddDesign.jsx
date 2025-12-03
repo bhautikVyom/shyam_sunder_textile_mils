@@ -48,7 +48,6 @@ const AddDesign = () => {
     },
   });
 
-  // Image Upload
   const handleImageChange = (e, index) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -62,7 +61,6 @@ const AddDesign = () => {
     formik.setFieldValue(`designs[${index}].image`, file);
   };
 
-  // Remove Uploaded Image
   const removeImage = (index) => {
     const updatedPreview = [...previewImages];
     updatedPreview[index] = null;
@@ -71,7 +69,6 @@ const AddDesign = () => {
     formik.setFieldValue(`designs[${index}].image`, null);
   };
 
-  // Delete Full Design Item
   const deleteDesign = (index) => {
     const updatedPreview = [...previewImages];
     updatedPreview.splice(index, 1);
@@ -146,17 +143,6 @@ const AddDesign = () => {
                       </p>
                     )}
                   </div>
-                  <Label htmlFor={`design_image_${index}`} className="cursor-pointer block">
-                    {!previewImages[index] && (
-                      <div className="border border-dashed border-primary/50 rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3">
-                        <IoIosCloudUpload className="size-14 opacity-50" />
-                        <div className="grid gap-1 text-center">
-                          <h5 className="h5-bold leading-none">Drop your image here.</h5>
-                          <p className="p-regular text-primary/70 leading-none">Supports JPG & PNG</p>
-                        </div>
-                      </div>
-                    )}
-                  </Label>
 
                   {previewImages[index] && (
                     <div className="size-48 shadow-card rounded-2xl overflow-hidden relative mx-auto">
@@ -203,31 +189,19 @@ const AddDesign = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   error={formik.touched.designs?.[index]?.description && formik.errors.designs?.[index]?.description}
-                  label="Matching Title"
-                  placeholder="Enter Title"
-                  name={`designs[${index}].title`}
-                  value={formik.values.designs[index]?.title}
-                  onChange={formik.handleChange}
                 />
-
-                <CommonTextarea
-                  label="Description"
-                  placeholder="Enter Description"
-                  name={`designs[${index}].description`}
-                  value={formik.values.designs[index]?.description}
-                  onChange={formik.handleChange}
-                />
-
-                <div className="flex items-center justify-end">
-                  <CommonButton
-                    className="sm:max-w-36 w-full"
-                    type="button"
-                    variant="destructive"
-                    onClick={() => deleteDesign(index)}
-                  >
-                    delete
-                  </CommonButton>
-                </div>
+                {formik.values.designs?.length > 1 && (
+                  <div className="flex items-center justify-end">
+                    <CommonButton
+                      className="sm:max-w-36 w-full"
+                      type="button"
+                      variant="destructive"
+                      onClick={() => deleteDesign(index)}
+                    >
+                      delete
+                    </CommonButton>
+                  </div>
+                )}
               </div>
             ))}
           </div>
