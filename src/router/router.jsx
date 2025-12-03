@@ -3,6 +3,7 @@ import AdminPanelLayout from "../components/admin-panel/admin-panel-layout";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/authentication/Login";
 import User from "../pages/master/User/User";
+import Design from "../pages/master/Design/Design";
 import AddEditUser from "../pages/master/User/AddEditUser";
 
 export const PrivateRoute = ({ children }) => {
@@ -29,6 +30,13 @@ const routes = (isLoggedIn) => [
         path: "/",
         index: true,
       },
+
+      {
+         element: <Design />,
+        path: "/design",
+        index: true,
+      },
+      // Master Routes
       {
         element: <User />,
         path: "/master/user",
@@ -38,7 +46,8 @@ const routes = (isLoggedIn) => [
         element: <AddEditUser />,
         path: "/master/user/add",
         index: true,
-      }
+      },
+      //______________________________
     ],
   },
 ];
