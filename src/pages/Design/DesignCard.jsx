@@ -1,5 +1,3 @@
-import React from "react";
-import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "../../components/ui/card";
 import {
   Carousel,
@@ -15,12 +13,6 @@ const imagePlaceholder =
   "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=";
 
 const DesignCard = () => {
-  //   const autoplayPlugin = React.useRef(
-  //     Autoplay({
-  //       delay: 2000,            // autoplay speed (2 sec)
-  //       stopOnInteraction: false,
-  //     })
-  //   );
 
   return (
     <>
@@ -28,9 +20,8 @@ const DesignCard = () => {
         <Link to="" className="group duration-200 border rounded-xl">
           <div className="w-full flex items-center justify-center">
             <Carousel
-              // plugins={[autoplayPlugin.current]}
               opts={{ loop: true }}
-              className="w-full max-w-[240px]"
+              className="w-full max-w-60"
             >
               <CarouselContent>
                 {Array.from({ length: 5 }).map((_, index) => (
@@ -39,7 +30,7 @@ const DesignCard = () => {
                       <CardContent className="p-0 h-48">
                         <img
                           src={imagePlaceholder}
-                            alt="Design Image"
+                          alt="Design Image"
                           className="w-full h-full object-cover rounded-xl bg-cover"
                         />
                       </CardContent>
@@ -53,16 +44,12 @@ const DesignCard = () => {
             </Carousel>
           </div>
           <div className="flex items-center justify-between gap-1 px-4 pb-4 pt-2">
-            {/* <div className="flex items-center gap-1">
-              <h4 className="p-bold whitespace-nowrap">Title:</h4>
-              <p className="p-regular line-clamp-1">Embroderie</p>
-            </div> */}
             <div className="flex items-center gap-1">
               <h4 className="p-bold whitespace-nowrap">Design No.:</h4>
               <p className="p-regular line-clamp-1">1234679</p>
             </div>
             <div className="flex items-center justify-center size-9 bg-[#25d366] rounded-md cursor-pointer hover:bg-green/80 duration-200">
-                <FaWhatsapp className="text-white size-6" />
+              <FaWhatsapp className="text-white size-6" />
             </div>
           </div>
         </Link>
