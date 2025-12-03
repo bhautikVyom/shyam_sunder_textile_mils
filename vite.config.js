@@ -13,7 +13,7 @@ export default defineConfig({
     manifest: {
       name: "Shyam Sunder Textile Mills",
       short_name: "SSTM",
-      description: "Shyam Sunder Textile Mills Textile management system",
+      description: "Textile management system",
       display: "standalone",
       start_url: "/",
     }
