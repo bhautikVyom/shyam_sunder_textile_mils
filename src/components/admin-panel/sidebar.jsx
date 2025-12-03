@@ -32,7 +32,7 @@ export function Sidebar() {
         >
           <Link to="/" className={`flex items-center gap-2 p-0`}>
             <div className="w-48">
-              {/* <img
+              <img
                 src={AppImages.logoIconDark}
                 alt="logo"
                 className={cn(
@@ -41,7 +41,7 @@ export function Sidebar() {
                     : "translate-x-0 opacity-100",
                   "block dark:hidden object-contain bg-contain h-9 w-full"
                 )}
-              /> */}DD
+              />
               <img
                 src={AppImages.logoIcon}
                 alt="logoDark"

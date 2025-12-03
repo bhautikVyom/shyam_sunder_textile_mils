@@ -129,6 +129,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -140,4 +141,140 @@
   margin: 0 auto;
   padding: 0 !important;
   text-align: left !important;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.h1-bold {
+  @apply text-[56px] font-semibold -tracking-[3%];
+}
+
+.h2-bold {
+  @apply text-[40px] font-semibold;
+}
+
+.h3-bold {
+  @apply text-xl md:text-4xl font-semibold;
+}
+
+.h4-bold {
+  @apply text-base md:text-2xl font-semibold;
+}
+
+.h5-bold {
+  @apply text-sm md:text-xl font-semibold;
+}
+
+.h6-bold {
+  @apply text-sm font-semibold;
+}
+
+/* Heading tag Medium */
+.h1-medium {
+  @apply text-[56px] font-medium -tracking-[3%];
+}
+
+.h2-medium {
+  @apply text-[40px] font-medium;
+}
+
+.h3-medium {
+  @apply text-xl md:text-4xl font-medium;
+}
+
+.h4-medium {
+  @apply text-xl md:text-2xl font-medium;
+}
+
+.h5-medium {
+  @apply text-sm md:text-xl font-medium;
+}
+
+.h6-medium {
+  @apply text-base font-medium;
+}
+
+/* Heading tag Regular */
+.h1-regular {
+  @apply text-[56px] font-normal -tracking-[3%];
+}
+
+.h2-regular {
+  @apply text-[40px] font-normal;
+}
+
+.h3-regular {
+  @apply text-xl md:text-4xl font-normal;
+}
+
+.h4-regular {
+  @apply text-xl md:text-2xl font-normal;
+}
+
+.h5-regular {
+  @apply text-sm md:text-xl font-normal;
+}
+
+.h6-regular {
+  @apply text-base font-normal;
+}
+
+/* P Tag */
+.p-bold {
+  @apply text-sm font-semibold;
+}
+
+.p-medium {
+  @apply text-sm font-medium;
+}
+
+.p-regular {
+  @apply text-sm font-normal;
+}
+
+/* Span Tag */
+.span-bold {
+  @apply text-xs font-semibold;
+}
+
+.span-medium {
+  @apply text-xs font-medium lg:text-sm;
+}
+
+.span-regular {
+  @apply text-xs font-normal lg:text-sm;
+}
+
+.login-bg::after {
+  content: "";
+  @apply fixed inset-0 bg-no-repeat bg-center bg-cover -z-10;
+  background-image: url('/src/assets/login-bg.png');
+}
+
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 50px rgba(255, 255, 255, 0) inset !important;
+  background-color: transparent !important;
+  background-clip: text;
+}
+
+/* Dark mode autofill styles */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
 }

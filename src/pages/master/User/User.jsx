@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Card } from "../../../components/ui/card";
 import { CommonTextField } from "../../../components/widgets/common_textField";
 import CommonTable from "../../../common/CommonTable";
+import CommonButton from "../../../components/widgets/common_button";
+import { CircleFadingPlus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
 
+  const navigate = useNavigate()
   const staticUsers = [
     {
       _id: "1",
@@ -80,7 +84,18 @@ const User = () => {
 
   return (
     <div className="grid gap-6">
-      <h3 className="text-xl tab:text-2xl font-bold">User List</h3>
+      <div className="flex justify-between items-center gap-2">
+        <h3 className="text-xl tab:text-2xl font-bold">User List</h3>
+        <CommonButton
+          type="submit"
+          onClick={() => navigate('/master/user/add')}
+        >
+          <div className="flex items-center gap-2">
+            <CircleFadingPlus />
+            add
+          </div>
+        </CommonButton>
+      </div>
 
       <div className="flex items-center justify-between gap-4 max-lg:flex-col">
         <div className="lg:max-w-72 w-full grid gap-1">
