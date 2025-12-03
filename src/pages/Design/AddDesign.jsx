@@ -82,6 +82,11 @@ const AddDesign = () => {
               <CommonTextField
                 label="Design No."
                 placeholder="Enter Design No."
+                name="design_no"
+                value={formik.values.design_no}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.design_no && formik.errors.design_no}
               />
             </div>
             <CommonButton
@@ -89,7 +94,7 @@ const AddDesign = () => {
               onClick={() =>
                 formik.setFieldValue("designs", [
                   ...formik.values.designs,
-                  { image: null, title: "" },
+                  { image: null, title: "", description: "" },
                 ])
               }
             >
@@ -105,21 +110,29 @@ const AddDesign = () => {
             {formik.values.designs?.map((item, index) => (
               <div key={item} className="p-4 rounded-2xl shadow-card grid gap-6">
                 <div>
-                  <Label htmlFor={`design_image_${index}`} className="cursor-pointer block">
+                  <div>
+                    <Label htmlFor={`design_image_${index}`} className="cursor-pointer block">
 
-                    {!previewImages[index] && (
-                      <div className="border border-dashed border-primary/50 rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3">
-                        <IoIosCloudUpload className="size-14 opacity-50" />
-                        <div className="grid gap-1 text-center">
-                          <h5 className="h5-bold leading-none">Drop your image here.</h5>
-                          <p className="p-regular text-primary/70 leading-none">
-                            Supports JPG & PNG
-                          </p>
+                      {!previewImages[index] && (
+                        <div className="border border-dashed border-primary/50 rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3">
+                          <IoIosCloudUpload className="size-14 opacity-50" />
+                          <div className="grid gap-1 text-center">
+                            <h5 className="h5-bold leading-none">Drop your image here.</h5>
+                            <p className="p-regular text-primary/70 leading-none">
+                              Supports JPG & PNG
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                  </Label>
+                    </Label>
+
+                    {formik.touched.designs?.[index]?.image && formik.errors.designs?.[index]?.image && (
+                      <p className="text-red-500 text-sm leading-none!">
+                        {formik.errors.designs?.[index]?.image}
+                      </p>
+                    )}
+                  </div>
 
                   {previewImages[index] && (
                     <div className="size-48 shadow-card rounded-2xl overflow-hidden relative mx-auto">
@@ -151,11 +164,21 @@ const AddDesign = () => {
                 <CommonTextField
                   label="matching Title"
                   placeholder={`Enter Image Ma Title`}
+                  name={`designs[${index}].title`}
+                  value={formik.values.designs[index].title}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.designs?.[index]?.title && formik.errors.designs?.[index]?.title}
                 />
 
                 <CommonTextarea
-                  label="matching Title"
-                  placeholder={`Enter Image Ma Title`}
+                  label="description"
+                  placeholder={`Enter Image description`}
+                  name={`designs[${index}].description`}
+                  value={formik.values.designs[index].description}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.designs?.[index]?.description && formik.errors.designs?.[index]?.description}
                 />
               </div>
             ))}
