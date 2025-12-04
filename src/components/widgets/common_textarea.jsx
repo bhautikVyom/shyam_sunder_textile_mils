@@ -89,7 +89,7 @@ const CommonTextarea = ({
         </Label>
         <div className="grid gap-0.5 relative">
           {input}
-          {error && <p className="text-destructive text-xs absolute -bottom-4">{error}</p>}
+          {error && <p className="text-destructive text-xs absolute -bottom-2.5">{error}</p>}
         </div>
       </div>
     );

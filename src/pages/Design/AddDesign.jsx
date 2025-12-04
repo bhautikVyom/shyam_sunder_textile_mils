@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import React, { useState } from "react";
 import { Card } from "../../components/ui/card";
 import BackPath from "../../common/BackPath";
@@ -9,12 +10,11 @@ import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { IoIosCloudUpload } from "react-icons/io";
 import { Trash2 } from "lucide-react";
+import { MdOutlineModeEdit } from "react-icons/md";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { CommonTextarea } from "../../components/widgets/common_textarea";
 
 const AddDesign = () => {
-
   const [previewImages, setPreviewImages] = useState([]);
 
   const validationSchema = Yup.object({
@@ -85,7 +85,7 @@ const AddDesign = () => {
       <h3 className="h5-bold">Add Design</h3>
 
       <Card className="p-3">
-        <form className="grid gap-5" onSubmit={formik.handleSubmit}>
+        <form className="grid gap-6" onSubmit={formik.handleSubmit}>
           <div className="flex items-center justify-between gap-4">
             <div className="max-w-96">
               <CommonTextField
@@ -99,49 +99,72 @@ const AddDesign = () => {
               />
             </div>
 
-            <CommonButton
-              type="button"
-              onClick={() =>
-                formik.setFieldValue("designs", [
-                  ...formik.values.designs,
-                  { image: null, title: "", description: "" },
-                ])
-              }
-            >
-              <div className="flex items-center gap-2">
-                <LuCircleFadingPlus /> Add
-              </div>
-            </CommonButton>
+            <div className="flex items-center gap-3">
+              <CommonButton type="button">
+                <div className="flex items-center gap-2">
+                  <MdOutlineModeEdit /> Edit
+                </div>
+              </CommonButton>
+              <CommonButton
+                type="button"
+                onClick={() =>
+                  formik.setFieldValue("designs", [
+                    ...formik.values.designs,
+                    { image: null, title: "", description: "" },
+                  ])
+                }
+              >
+                <div className="flex items-center gap-2">
+                  <LuCircleFadingPlus /> Add
+                </div>
+              </CommonButton>
+            </div>
           </div>
 
           <Separator />
 
           <div className="grid grid-cols-2 gap-6">
             {formik.values.designs?.map((item, index) => (
-              <div key={index} className="p-4 rounded-2xl shadow-card grid gap-6">
+              <div
+                key={index}
+                className="p-5 rounded-2xl shadow-card grid gap-6"
+              >
                 <div>
-                  <div>
-                    <Label htmlFor={`design_image_${index}`} className="cursor-pointer block">
-
+                  <div className="relative">
+                    <Label
+                      htmlFor={`design_image_${index}`}
+                      className="cursor-pointer block"
+                    >
                       {!previewImages[index] && (
-                        <div className="border border-dashed border-primary/50 rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3">
+                        <div
+                          className={`border border-dashed rounded-2xl h-48 w-full flex items-center justify-center flex-col gap-3
+                            ${
+                              formik.touched.designs?.[index]?.image &&
+                              formik.errors.designs?.[index]?.image
+                                ? "border-destructive" // error border
+                                : "border-primary/50" // normal border
+                            }
+                          `}
+                        >
                           <IoIosCloudUpload className="size-14 opacity-50" />
                           <div className="grid gap-1 text-center">
-                            <h5 className="h5-bold leading-none">Drop your image here.</h5>
+                            <h5 className="h5-bold leading-none">
+                              Drop your image here.
+                            </h5>
                             <p className="p-regular text-primary/70 leading-none">
                               Supports JPG & PNG
                             </p>
                           </div>
                         </div>
                       )}
-
                     </Label>
 
-                    {formik.touched.designs?.[index]?.image && formik.errors.designs?.[index]?.image && (
-                      <p className="text-red-500 text-sm leading-none!">
-                        {formik.errors.designs?.[index]?.image}
-                      </p>
-                    )}
+                    {formik.touched.designs?.[index]?.image &&
+                      formik.errors.designs?.[index]?.image && (
+                        <p className="text-destructive text-xs absolute -bottom-3.5 leading-none!">
+                          {formik.errors.designs?.[index]?.image}
+                        </p>
+                      )}
                   </div>
 
                   {previewImages[index] && (
@@ -178,7 +201,10 @@ const AddDesign = () => {
                   value={formik.values.designs[index].title}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={formik.touched.designs?.[index]?.title && formik.errors.designs?.[index]?.title}
+                  error={
+                    formik.touched.designs?.[index]?.title &&
+                    formik.errors.designs?.[index]?.title
+                  }
                 />
 
                 <CommonTextarea
@@ -188,7 +214,10 @@ const AddDesign = () => {
                   value={formik.values.designs[index].description}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  error={formik.touched.designs?.[index]?.description && formik.errors.designs?.[index]?.description}
+                  error={
+                    formik.touched.designs?.[index]?.description &&
+                    formik.errors.designs?.[index]?.description
+                  }
                 />
                 {formik.values.designs?.length > 1 && (
                   <div className="flex items-center justify-end">
