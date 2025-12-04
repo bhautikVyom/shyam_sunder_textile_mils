@@ -3,17 +3,19 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}z
+}
 
-.logo {
+z .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +42,39 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.ag-theme-quartz .ag-cell {
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+}
+
+.ag-header-cell-label {
+  justify-content: start;
+  font-weight: 600;
+}
+
+.custom-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.custom-actions button {
+  border-radius: 6px !important;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ag-header-cell-sorted-asc .ag-icon,
+.ag-header-cell-sorted-desc .ag-icon {
+  color: #333 !important;
+}
+
+.ag-row-hover {
+  background-color: #f7f7f7 !important;
 }
