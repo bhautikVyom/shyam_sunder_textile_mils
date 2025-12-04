@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "../components/ui/table";
-import CommonButton from "../components/widgets/common_button";
+"use client";
+
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+import { useMemo, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+
+import "ag-grid-community/styles/ag-theme-quartz.css";
+
 import { AiFillEdit } from "react-icons/ai";
 import { Trash2 } from "lucide-react";
+
+import "../../src/App.css";
 import Delete from "./common_Delete_dialog";
+import CommonButton from '../components/widgets/common_button'
 
 const CommonTable = ({
   columns = [],
@@ -20,91 +23,82 @@ const CommonTable = ({
   onEdit = () => { },
   onDelete = () => { },
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
 
-  const [isOpen, setIsOpen] = useState(false)
-  console.log("isOpen", isOpen);
+  const agColumns = useMemo(() => {
+    const gridCols = columns.map((col) => ({
+      headerName: col.headerName,
+      field: col.field,
+      flex: col.flex || 1,
+      width: col.width,
+      sortable: true,
+      filter: true,
+      cellRenderer: col.renderCell
+        ? (params) =>
+          col.renderCell({
+            row: params.data,
+            value: params.value,
+          })
+        : undefined,
+    }));
+
+    if (showEdit || showDelete) {
+      gridCols.push({
+        headerName: "Actions",
+        width: 120,
+        cellRenderer: (params) => (
+          <div className="custom-actions">
+            {showEdit && (
+              <CommonButton
+                variant="outline"
+                className="size-8 rounded-md"
+                onClick={() => onEdit(params.data)}
+              >
+                <AiFillEdit className="size-4" />
+              </CommonButton>
+            )}
+
+            {showDelete && (
+              <CommonButton
+                variant="outline"
+                className="size-8 rounded-md"
+                onClick={() => {
+                  setSelectedRow(params.data);
+                  setIsOpen(true);
+                }}
+              >
+                <Trash2 className="size-4" />
+              </CommonButton>
+            )}
+          </div>
+        ),
+      });
+    }
+
+    return gridCols;
+  }, [columns, showEdit, showDelete]);
 
   return (
-    <div className="border rounded-xl overflow-hidden">
-      <Table className="whitespace-nowrap">
+    <>
+      <div className="ag-theme-quartz w-full" style={{ height: 450 }}>
+        <AgGridReact
+          rowData={rows}
+          columnDefs={agColumns}
+          pagination={true}
+          paginationPageSize={10}
+          animateRows={true}
+          suppressRowClickSelection={true}
+        />
+      </div>
 
-        <TableHeader className="bg-gray-100 dark:bg-gray-800">
-          <TableRow>
-            {columns.map((col) => (
-              <TableHead
-                key={col.field}
-                style={{ width: col.width, flex: col.flex }}
-                className="font-semibold text-sm"
-              >
-                {col.headerName}
-              </TableHead>
-            ))}
-
-            {(showEdit || showDelete) && (
-              <TableHead className="text-center w-28">Actions</TableHead>
-            )}
-          </TableRow>
-        </TableHeader>
-
-        <TableBody>
-          {rows.length > 0 ? (
-            rows.map((row, rowIndex) => (
-              <TableRow key={row._id || rowIndex}>
-                {columns.map((col) => (
-                  <TableCell key={col.field} className="py-3">
-                    {col.renderCell
-                      ? col.renderCell({ row, value: row[col.field] })
-                      : row[col.field] ?? "-"}
-                  </TableCell>
-                ))}
-
-                {(showEdit || showDelete) && (
-                  <TableCell>
-                    <div className="flex items-center gap-2 justify-center">
-                      {showEdit && (
-                        <CommonButton
-                          variant="outline"
-                          className="size-9"
-                          onClick={() => onEdit(row)}
-                        >
-                          <AiFillEdit className="size-5" />
-                        </CommonButton>
-                      )}
-
-                      {showDelete && (
-                        <CommonButton
-                          variant="outline"
-                          className="size-9"
-                          onClick={() => setIsOpen(true)}
-                        >
-                          <Trash2 className="h-5 w-5" />
-                        </CommonButton>
-                      )}
-                    </div>
-                  </TableCell>
-                )}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow className="h-32">
-              <TableCell
-                colSpan={columns.length + 1}
-                className="text-center text-gray-500 font-medium"
-              >
-                No data found
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-
-      </Table>
       <Delete
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        handleDelete={onDelete}
+        handleDelete={() => onDelete(selectedRow)}
       />
-    </div>
+    </>
   );
 };
 
-export default CommonTable;
+export default CommonTable
