@@ -6,6 +6,8 @@ import User from "../pages/master/User/User";
 import Design from "../pages/Design/Design";
 import AddEditUser from "../pages/master/User/AddEditUser";
 import AddDesign from "../pages/Design/AddDesign";
+import Order from "../pages/order/order";
+import Report from "../pages/report/report";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -42,7 +44,16 @@ const routes = (isLoggedIn) => [
         path: "/design/add-design",
         index: true,
       },
-      // Master Routes
+      {
+        element: <Order />,
+        path: "/order",
+        index: true,
+      },
+      {
+        element: <Report />,
+        path: "/report",
+        index: true,
+      },
       {
         element: <User />,
         path: "/master/user",
@@ -53,7 +64,6 @@ const routes = (isLoggedIn) => [
         path: "/master/user/add",
         index: true,
       },
-      //______________________________
     ],
   },
 ];
