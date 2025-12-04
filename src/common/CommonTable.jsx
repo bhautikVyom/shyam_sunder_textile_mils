@@ -81,14 +81,21 @@ const CommonTable = ({
 
   return (
     <>
-      <div className="ag-theme-quartz w-full" style={{ height: 450 }}>
+      <div className="ag-theme-quartz w-full"
+        style={{
+          height: "400px",
+        }}>
         <AgGridReact
           rowData={rows}
           columnDefs={agColumns}
           pagination={true}
           paginationPageSize={10}
+          paginationPageSizeSelector={[10, 20, 50, 100]}
           animateRows={true}
-          suppressRowClickSelection={true}
+          rowSelection={{
+            mode: "multiRow",
+            enableClickSelection: true,
+          }}
         />
       </div>
 

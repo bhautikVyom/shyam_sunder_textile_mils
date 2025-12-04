@@ -44,27 +44,23 @@ z .logo {
   color: #888;
 }
 
-/* spacing and alignment */
 .ag-theme-quartz .ag-cell {
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 14px;
 }
 
-/* header alignment */
 .ag-header-cell-label {
   justify-content: start;
   font-weight: 600;
 }
 
-/* action buttons container */
 .custom-actions {
   display: flex;
   gap: 8px;
   justify-content: center;
 }
 
-/* small rounded icons like screenshot */
 .custom-actions button {
   border-radius: 6px !important;
   width: 30px;
@@ -74,13 +70,11 @@ z .logo {
   align-items: center;
 }
 
-/* clickable sort icon look */
 .ag-header-cell-sorted-asc .ag-icon,
 .ag-header-cell-sorted-desc .ag-icon {
   color: #333 !important;
 }
 
-/* row hover effect */
 .ag-row-hover {
   background-color: #f7f7f7 !important;
 }
