@@ -8,6 +8,7 @@ import AddEditUser from "../pages/master/User/AddEditUser";
 import AddDesign from "../pages/Design/AddDesign";
 import Order from "../pages/order/order";
 import Report from "../pages/report/report";
+import AddOrder from "../pages/order/AddOrder";
 
 export const PrivateRoute = ({ children }) => {
   const user = localStorage.getItem("admin_store");
@@ -41,12 +42,17 @@ const routes = (isLoggedIn) => [
       },
       {
         element: <AddDesign />,
-        path: "/design/add-design",
+        path: "/design/:type/*",
         index: true,
       },
       {
         element: <Order />,
         path: "/order",
+        index: true,
+      },
+      {
+        element: <AddOrder />,
+        path: "/order/:type/*",
         index: true,
       },
       {

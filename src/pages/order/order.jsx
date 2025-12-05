@@ -86,7 +86,7 @@ const Order = () => {
         <h3 className="text-xl tab:text-2xl font-bold">Order List</h3>
         <CommonButton
           type="submit"
-          onClick={() => navigate('/master/user/add')}
+          onClick={() => navigate('/order/add')}
         >
           <div className="flex items-center gap-2">
             <CircleFadingPlus />
